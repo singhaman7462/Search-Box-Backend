@@ -1,6 +1,15 @@
 const express= require('express');
 const app=express();
+const cors = require('cors');
 
+
+app.use(
+    cors({
+      origin: "http://localhost:5173", // Allow only your frontend
+      methods: ["GET", "POST"], // Allow specific methods
+      credentials: true, // If sending cookies
+    })
+  );
 
 //load config from env file
 require("dotenv").config();

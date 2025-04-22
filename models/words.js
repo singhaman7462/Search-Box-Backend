@@ -11,5 +11,5 @@ const wordSchema=new mongoose.Schema({
     
 })
 
-//Syntax to export the schema.todo is the name it will follow when it will get exported.todoSchema is the object which should be expoteed
+//Syntax to export the schema.words is the name it will follow when it will get exported.wordSchema is the object which should be expoteed
 module.exports=mongoose.model("words",wordSchema);

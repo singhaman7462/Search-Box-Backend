@@ -18,9 +18,9 @@ const PORT=process.env.PORT || 4000;
 //middleware to parse json request body
 app.use(express.json());
 
-//import routes for TODO API
+//import routes for Search API
 const searchRoutes=require("./routes/searchRoutes");
-//mount the todo API routes.COmplete the url ->locolhost+mounted string+route
+//mount the Search API routes.Complete the url ->locolhost+mounted string+route
 app.use("/api/v1",searchRoutes);
 
 //start server

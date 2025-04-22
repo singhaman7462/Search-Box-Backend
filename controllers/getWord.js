@@ -3,11 +3,12 @@ const word = require('../models/words');
 
 exports.getWords = async (req, res) => {
     const prefixList = req.query.prefix?.split(',') || [];
+    
     const regexConditions = prefixList.map(prefixes => ({
         word: new RegExp(`^${prefixes}`, "i") // case-insensitive match
       }));
     try {
-        //fetch all todos items from database
+        //fetch all words from database
         const suggestions = await word.find({ $or: regexConditions });
 
         //response

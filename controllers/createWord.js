@@ -1,28 +1,40 @@
-//IMport the model
-const words=require("../models/words");
-//define route handler
+const words = require("../models/words");
 
-exports.createWord= async(req,res)=>{
-    const { wordList } = req.body;
+exports.createWord = async (req, res) => {
+  try {
+    // Safely extract wordList from req.body
+    const wordList = req.body.wordList;
+   
+    // Validate
+    if (!Array.isArray(wordList)) {
+      return res.status(400).json({
+        success: false,
+        message: "'wordList' must be an array in the request body",
+      });
+    }
 
-const entries = wordList.map(word => ({ word }));
+    // Prepare entries
+    const entries = wordList.map(({word,transliterations})=> ({
+      word: word?.trim(),
+      transliterations:transliterations
+    }));
+   
+    
 
-try {
-    // Insert multiple word entries into the database
+    // Insert into DB
     const response = await words.insertMany(entries);
 
-    // Send success response
     res.status(200).json({
-        success: true,
-        data: response,
-        message: 'Entry created successfully',
+      success: true,
+      data: response,
+      message: 'Entries created successfully',
     });
-} catch (err) {
-    console.error(err);
+
+  } catch (err) {
+    console.error("Insert error:", err);
     res.status(500).json({
-        success: false,
-        data: null,
-        message: err.message || 'Internal server error',
+      success: false,
+      message: err.message || 'Internal server error',
     });
-}
-}
+  }
+};

@@ -10,7 +10,7 @@ const dbConnect = () => {
     })
     .catch((eror)=>{
        console.log("Issue oin db connection");
-       console.log(eror.messAge);
+       console.log(eror);
        //What is this??
        process.exit(1);
     })

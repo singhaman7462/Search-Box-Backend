@@ -7,7 +7,11 @@ const wordSchema=new mongoose.Schema({
         type:String,
         required:true,
         maxLength:50,
-    }
+    },
+    transliterations:[{
+        type:String,
+        maxLength:50
+    }]
     
 })
 

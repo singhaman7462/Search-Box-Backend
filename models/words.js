@@ -12,7 +12,7 @@ const wordSchema=new mongoose.Schema({
         type:String,
         maxLength:50
     }]
-    
+    //Transliterations is the array of strings
 })
 
 //Syntax to export the schema.words is the name it will follow when it will get exported.wordSchema is the object which should be expoteed
